@@ -1,15 +1,25 @@
 import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CREATE_BOARD } from "./BoardWrite.query";
 
 export default function BoardWrite() {
+  const [button, setButton] = useState(false);
   const [data, setData] = useState({
     writer: "",
     title: "",
     contents: "",
   });
+  const { writer, title, contents } = data;
+
   const [createBoard] = useMutation(CREATE_BOARD);
+  useEffect(() => {
+    if (writer && title && contents) {
+      setButton(true);
+    } else {
+      setButton(false);
+    }
+  }, [data]);
 
   const onClickSubmit = async () => {
     const result = await createBoard({
@@ -32,5 +42,11 @@ export default function BoardWrite() {
     });
   };
 
-  return <BoardWriteUI onChange={onChange} onClickSubmit={onClickSubmit} />;
+  return (
+    <BoardWriteUI
+      button={button}
+      onChange={onChange}
+      onClickSubmit={onClickSubmit}
+    />
+  );
 }

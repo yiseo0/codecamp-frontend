@@ -1,6 +1,6 @@
 import { BlueButton, RedInput } from "./BoardWrite.style";
 
-export default function BoardWriteUI({ onChange, onClickSubmit }) {
+export default function BoardWriteUI({ button, onChange, onClickSubmit }) {
   return (
     <>
       작성자 : <RedInput type="text" name="writer" onChange={onChange} />
@@ -9,7 +9,9 @@ export default function BoardWriteUI({ onChange, onClickSubmit }) {
       <br />
       내용 : <input type="text" name="contents" onChange={onChange} />
       <br />
-      <BlueButton onClick={onClickSubmit}>Graphql-API(동기) 요청하기</BlueButton>
+      <BlueButton button={button} onClick={onClickSubmit}>
+        Graphql-API(동기) 요청하기
+      </BlueButton>
     </>
   );
 }
