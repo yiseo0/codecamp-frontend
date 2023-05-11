@@ -12,20 +12,20 @@
 <br>
 
 ### 01. React 기초
-- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/01-02-emotion" target="_blank">emotion</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/blob/main/class/pages/01-02-emotion/index.js">emotion</a>
 
 ### 02. 데이터 통신<br>
-- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/04-01-rest-get">rest-api</a>
-- ### <a href="">graphql-api</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/04-01-rest-get/index.js">rest-api</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/04-05-graphql-mutation-product/index.js">graphql-api</a>
 
 ### 03. 라우팅 및 리렌더링<br>
-- ### <a href="">static routing (정적 라우팅)</a>
-- ### <a href="">dynamic routing (동적 라우팅)</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/05-05-static-routing-board-query/index.js">static routing (정적 라우팅)</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/05-09-dynamic-routing-board-mutation/index.js">dynamic routing (동적 라우팅)</a>
 
 ### 04. 폴더 구조·props·컴포넌트 재사용성<br>
-- ### <a href="">실무용 폴더구조(container/presenter)</a>
-- ### <a href="">emotion에서 props 사용하기</a>
-- ### <a href="">refetchQueries</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/06-01-container-presenter/index.js">실무용 폴더구조(container/presenter)</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/07-01-empotion-props/index.js">emotion에서 props 사용하기</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/blob/main/class/pages/09-01-boards/new/index.js">refetchQueries</a>
 - ### <a href="">컴포넌트 재사용하기</a><br>
 
 ### 05. 타입스크립트<br>
