@@ -6,3 +6,5 @@
 06-01 실무용 폴더구조(container/presenter)
 07-01 emotion에서 props 사용하기
 07-03 ~ 07-04 refetchQueries
+08-01 ~ 08-05 게시물 작성페이지, 게시물 수정페이지, 게시물 상세페이지 구현
+(컴포넌트 재사용하기)
