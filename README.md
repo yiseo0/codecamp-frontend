@@ -25,8 +25,7 @@
 ### 04. 폴더 구조·props·컴포넌트 재사용성<br>
 - ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/06-01-container-presenter/index.js">실무용 폴더구조(container/presenter)</a>
 - ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/07-01-empotion-props/index.js">emotion에서 props 사용하기</a>
-- ### <a href="https://github.com/yiseo0/codecamp-frontend/blob/main/class/pages/09-01-boards/new/index.js">refetchQueries</a>
-- ### <a href="https://github.com/yiseo0/codecamp-frontend/blob/main/class/pages/09-01-boards/new/index.js">컴포넌트 재사용하기</a><br>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/blob/main/class/pages/09-01-boards/new/index.js">refetchQueries / 컴포넌트 재사용하기</a>
 
 ### 05. 타입스크립트<br>
 ### 06. 프레임워크 / 라이브러리와 레이아웃 구조<br>
