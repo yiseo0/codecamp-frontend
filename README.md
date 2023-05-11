@@ -12,10 +12,10 @@
 <br>
 
 ### 01. React 기초
-- ### <a href="">emotion</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/01-02-emotion" target="_blank">emotion</a>
 
 ### 02. 데이터 통신<br>
-- ### <a href="">rest-api</a>
+- ### <a href="https://github.com/yiseo0/codecamp-frontend/tree/main/class/pages/04-01-rest-get">rest-api</a>
 - ### <a href="">graphql-api</a>
 
 ### 03. 라우팅 및 리렌더링<br>
