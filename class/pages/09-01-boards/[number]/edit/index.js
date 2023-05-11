@@ -18,3 +18,4 @@ export default function GraphqlMutationPage() {
 
   return <BoardWrite isEdit="true" boardData={data} />;
 }
+w
