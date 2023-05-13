@@ -1,5 +1,6 @@
+import { IProductWriteUI } from "./ProductWrite.types";
 
-export default function ProductWriteUI(props) {
+export default function ProductWriteUI(props: IProductWriteUI) {
     return (
         <>
             <h1>{props.isEdit ? "수정" : "등록"}페이지</h1>

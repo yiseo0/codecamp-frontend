@@ -1,21 +1,22 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ProductWriteUI from "./ProductWrite.presenter";
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from "./ProductWrite.query";
+import { IData, IProductWriteProps, IUpdateProductInput } from "./ProductWrite.types";
 
-export default function ProductWrite(props) {
+export default function ProductWrite(props: IProductWriteProps) {
   const router = useRouter();
   const [create_product] = useMutation(CREATE_PRODUCT);
   const [update_product] = useMutation(UPDATE_PRODUCT);
-  const [data, setData] = useState({
+  const [data, setData] = useState<IData>({
     seller: "",
     name: "",
     detail: "",
     price: "",
   });
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData({
       ...data,
@@ -45,7 +46,7 @@ export default function ProductWrite(props) {
 
   // 게시물 수정 함수
   const onClickUpdate = async () => {
-    const updateProductInput = {};
+    const updateProductInput: IUpdateProductInput = {};
     if (data.name) updateProductInput.name = data.name;
     if (data.detail) updateProductInput.detail = data.detail;
     if (data.price) updateProductInput.price = Number(data.price);
