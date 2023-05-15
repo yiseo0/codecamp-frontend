@@ -12,7 +12,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       <br />
       내용 : <input type="text" name="contents" onChange={props.onChange} defaultValue={props.boardData?.fetchBoard.contents} />
       <br />
-      <BlueButton onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}>
+      <BlueButton button="yellow" onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}>
         {props.isEdit ? "수정하기" : "등록하기"}
       </BlueButton>
     </>
