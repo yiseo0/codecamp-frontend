@@ -4,10 +4,10 @@ export const RedInput = styled.input`
   border-color: red;
 `;
 
-interface IProps {
+interface IBlueButtonProps {
   button: string;
 }
 
 export const BlueButton = styled.button`
-  background-color: ${(props: IProps) => (props.button ? "yellow" : "blue")};
+  background-color: ${(props: IBlueButtonProps) => (props.button ? "yellow" : "blue")};
 `;
