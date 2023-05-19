@@ -6,9 +6,9 @@ export default function counterStatePage(): JSX.Element {
   console.log("test")
 
   const onClick = (): void => {
-    setCount((prev) => count + 1);
-    setCount((prev) => count + 1);
-    setCount((prev) => count + 1);
+    setCount((prev) => prev + 1);
+    setCount((prev) => prev + 1);
+    setCount((prev) => prev + 1);
   };
 
   return (
