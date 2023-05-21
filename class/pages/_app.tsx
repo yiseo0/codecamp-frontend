@@ -1,16 +1,19 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { GlobalStyles } from '@/src/commons/types/generated/styles/globalStyles';
+import ApolloSetting from '@/src/components/commons/apollo';
+import Layout from '@/src/components/commons/layout';
+import { Global } from '@emotion/react';
 import type { AppProps } from 'next/dist/shared/lib/router/router';
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
 
-  const client = new ApolloClient({
-    uri: 'http://practice.codebootcamp.co.kr/graphql',
-    cache: new InMemoryCache(),
-  });
-
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <ApolloSetting>
+      <>
+        <Global styles={GlobalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </>
+    </ApolloSetting>
   )
 }
