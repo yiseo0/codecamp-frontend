@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal } from 'antd';
-import DaumPostcodeEmbed, { Address } from 'react-daum-postcode';
+import DaumPostcodeEmbed from 'react-daum-postcode';
+import type { Address } from 'react-daum-postcode';
 
 export default function ModalCustomPage(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
