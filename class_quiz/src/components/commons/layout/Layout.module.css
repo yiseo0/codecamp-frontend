@@ -1,0 +1,6 @@
+.header { height: 50px; background: #ff0000; } 
+.banner { height: 100px; background: pink; } 
+.nav { height: 50px; background: orange; font-family: "myfont";} 
+.box { display: flex; height: 100px;} 
+.side { width: 100px; background: blue; } 
+.footer { height: 50px; background: green;} 
