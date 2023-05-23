@@ -4,6 +4,8 @@ export const GlobalStyles = css`
   * {
     font-size: 30px;
     box-sizing: border-box;
+
+    font-family: "myfont";
   }
 
   @font-face {
