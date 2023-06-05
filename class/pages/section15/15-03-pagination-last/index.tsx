@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
-import { MouseEvent, useState } from "react";
+import type { MouseEvent } from "react";
 import type {
   IQuery,
   IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
 } from "@/src/commons/types/generated/types";
 
 const FETCH_BOARDS = gql`
@@ -16,6 +18,12 @@ const FETCH_BOARDS = gql`
     }
   }
 `;
+
+const FETCH_BOARD_COUNT = gql`
+  query{
+    fetchBoardsCount
+  }
+`
 
 const Row = styled.div`
   display: flex;
@@ -33,16 +41,27 @@ export default function StaticRoutedBoardPage(): JSX.Element {
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS);
 
+  const { data: dataBoardCount } = useQuery<Pick<IQuery, "fetchBoardsCount">, IQueryFetchBoardsCountArgs>(FETCH_BOARD_COUNT)
+
+  const lastPage = Math.ceil((dataBoardCount?.fetchBoardsCount ?? 10) / 10)
+  console.log(lastPage)
+
   const onClickPage = (e: MouseEvent<HTMLSpanElement>): void => {
     void refetch({ page: Number(e.currentTarget.innerText) }); // variables 키워드를 명시하지 않아도 된다.
   };
 
   const onClickPrev = (): void => {
+    if (startPage === 1) {
+      return
+    }
     setStartPage(startPage - 10)
     void refetch({ page: startPage - 10 });
   };
 
   const onClickNext = (): void => {
+    if (startPage + 10 > lastPage) {
+      return
+    }
     setStartPage(startPage + 10)
     void refetch({ page: startPage + 10 })
   };
@@ -61,10 +80,10 @@ export default function StaticRoutedBoardPage(): JSX.Element {
       ))}
 
       <span onClick={onClickPrev}>이전</span>
-
       {Array(10)
         .fill(0)
         .map((_, idx) => (
+          idx + startPage <= lastPage &&
           <span key={idx + startPage} onClick={onClickPage}>{idx + startPage}</span>
         ))}
       <span onClick={onClickNext}>다음</span>
