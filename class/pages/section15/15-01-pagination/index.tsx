@@ -1,10 +1,10 @@
-import {
+import { gql, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
+import type { MouseEvent } from "react";
+import type {
   IQuery,
   IQueryFetchBoardsArgs,
 } from "@/src/commons/types/generated/types";
-import { gql, useQuery } from "@apollo/client";
-import styled from "@emotion/styled";
-import { MouseEvent } from "react";
 
 const FETCH_BOARDS = gql`
   query fetchBoards($page: Int) {
@@ -25,14 +25,14 @@ const Column = styled.div`
   border-bottom: 1px solid #666;
 `;
 
-export default function StaticRoutedBoardPage() {
+export default function StaticRoutedBoardPage(): JSX.Element {
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS);
 
-  const onClickPage = (e: MouseEvent<HTMLSpanElement>) => {
-    refetch({ page: Number(e.currentTarget.innerText) }); // variables 키워드를 명시하지 않아도 된다.
+  const onClickPage = (e: MouseEvent<HTMLSpanElement>): void => {
+    void refetch({ page: Number(e.currentTarget.innerText) }); // variables 키워드를 명시하지 않아도 된다.
   };
 
   return (
@@ -51,7 +51,7 @@ export default function StaticRoutedBoardPage() {
       {Array(10)
         .fill(0)
         .map((_, idx) => (
-          <span onClick={onClickPage}>{idx + 1}</span>
+          <span key={idx + 1} onClick={onClickPage}>{idx + 1}</span>
         ))}
     </>
   );
