@@ -5,7 +5,7 @@ import { GlobalStyles } from "../styles/13/globalStyles";
 
 export default function App({ Component, pageProps }) {
   const client = new ApolloClient({
-    uri: "http://practice.codebootcamp.co.kr/graphql",
+    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),
   });
 
