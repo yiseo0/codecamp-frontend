@@ -64,7 +64,7 @@ export function Pagination(props: IPaginationProps) {
    const { refetch, boardsCount } = props
    const [selectPage, setSelectPage] = useState(1)
    const [startPage, setStartPage] = useState(1)
-   const lastPage = Math.ceil(((boardsCount || page) / page))
+   const lastPage = Math.ceil(((boardsCount || 10) / 10))
 
    const onClickPage = (e: MouseEvent<HTMLLIElement>): void => {
       setSelectPage(Number(e.currentTarget.innerText))
