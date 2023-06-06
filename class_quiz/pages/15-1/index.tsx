@@ -13,15 +13,26 @@
    7) 페이지 10개 중, 마지막 페이지가 77 페이지라면, 나머지 78 79 80 페이지는 화면에 보이지 않도록 만들어 주세요.
    8) 이전("<") 버튼과 다음(">") 버튼을 클릭했을 때 더이상 이동할 수 있는 페이지가 없다면 무시하도록 만들어 주세요. 추가로, 버튼에 비활성화 표시를 적용해 주세요.
       힌트) Emotion에 props로 isActive를 전달합니다.
+
+
+   2. 고난도) 페이지네이션 마지막 페이지처리-2
+
+   1) 페이지네이션에서 마지막 페이지를 처리할 때 사용했던 조건부렌더링(&&) 방식을 filter 방식으로 변경해 보세요.
+      ⇒ 힌트) 10개의 숫자가 들어있는 배열을 map을 그리기 전에 filter로 갯수를 조정해 보세요.
 */
 
 import { IQuery, IQueryFetchBoardsArgs, IQueryFetchBoardsCountArgs } from "@/src/commons/types/generated/types";
-import { gql, useQuery } from "@apollo/client";
+import { ApolloQueryResult, gql, useQuery } from "@apollo/client";
 import styled from "@emotion/styled";
 import { MouseEvent, useState } from "react";
 
 interface IPagerProps {
    selected: boolean
+}
+interface IPaginationProps {
+   page?: number,
+   refetch: (variables?: Partial<IQueryFetchBoardsArgs> | undefined) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>,
+   boardsCount?: number,
 }
 
 const FETCH_BOARDS = gql`
@@ -34,7 +45,6 @@ const FETCH_BOARDS = gql`
       }
    }
 `
-
 const FETCH_BOARDS_COUNT = gql`
    query {
       fetchBoardsCount
@@ -49,13 +59,12 @@ const PagerItem = styled.span`
    color : ${(props: IPagerProps) => props.selected ? 'red' : 'black'};
 `
 
-function index() {
-   const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS)
-   const { data: dataBoardsCount } = useQuery<Pick<IQuery, "fetchBoardsCount">, IQueryFetchBoardsCountArgs>(FETCH_BOARDS_COUNT)
-
+export function Pagination(props: IPaginationProps) {
+   const page = props.page || 10
+   const { refetch, boardsCount } = props
    const [selectPage, setSelectPage] = useState(1)
    const [startPage, setStartPage] = useState(1)
-   const lastPage = Math.ceil(((dataBoardsCount?.fetchBoardsCount || 10) / 10))
+   const lastPage = Math.ceil(((boardsCount || page) / page))
 
    const onClickPage = (e: MouseEvent<HTMLLIElement>): void => {
       setSelectPage(Number(e.currentTarget.innerText))
@@ -66,21 +75,45 @@ function index() {
       if (startPage === 1) {
          return
       }
-      setStartPage(prev => prev - 10)
-
-      refetch({ page: startPage - 10 })
-      setSelectPage(startPage - 10)
+      setStartPage(prev => prev - page)
+      refetch({ page: startPage - page })
+      setSelectPage(startPage - page)
    }
 
    const onClickPageNext = () => {
-      if (startPage + 10 > lastPage) {
+      if (startPage + page > lastPage) {
          return
       }
-      setStartPage(prev => prev + 10)
-
-      refetch({ page: startPage + 10 })
-      setSelectPage(startPage + 10)
+      setStartPage(prev => prev + page)
+      refetch({ page: startPage + page })
+      setSelectPage(startPage + page)
    }
+
+   return (
+      <Pager>
+         {
+            <PagerButton onClick={onClickPagePrev} disabled={startPage === 1}>이전</PagerButton>
+         }
+         {
+            Array(page).fill(0)
+               .filter((_, idx) => (idx + startPage) <= lastPage)
+               .map((_, idx) => (
+                  <PagerItem
+                     key={idx + startPage}
+                     onClick={onClickPage}
+                     selected={(idx + startPage) === selectPage}>
+                     {idx + startPage}
+                  </PagerItem>
+               ))
+         }
+         <PagerButton onClick={onClickPageNext} disabled={startPage + page > lastPage}>다음</PagerButton>
+      </Pager>
+   );
+}
+
+export default function index() {
+   const { data, refetch } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(FETCH_BOARDS)
+   const { data: dataBoardsCount } = useQuery<Pick<IQuery, "fetchBoardsCount">, IQueryFetchBoardsCountArgs>(FETCH_BOARDS_COUNT)
 
    return (
       <>
@@ -105,26 +138,10 @@ function index() {
             </tbody>
          </table>
 
-         <Pager>
-            {
-               <PagerButton onClick={onClickPagePrev} disabled={startPage === 1}>이전</PagerButton>
-            }
-
-            {
-               Array(10).fill(0).map((_, idx) => (
-                  (idx + startPage) <= lastPage &&
-                  <PagerItem
-                     key={idx + startPage}
-                     onClick={onClickPage}
-                     selected={(idx + startPage) == selectPage}>
-                     {idx + startPage}
-                  </PagerItem>
-               ))
-            }
-            <PagerButton onClick={onClickPageNext} disabled={startPage + 10 > lastPage}>다음</PagerButton>
-         </Pager>
+         <Pagination page={5} refetch={refetch} boardsCount={dataBoardsCount?.fetchBoardsCount} />
       </>
    );
 }
 
-export default index;
+
+
