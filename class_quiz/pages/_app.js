@@ -11,10 +11,11 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <Global styles={GlobalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {/* <Global styles={GlobalStyles} /> */}
+      <Global />
+      {/* <Layout> */}
+      <Component {...pageProps} />
+      {/* </Layout> */}
     </ApolloProvider>
   );
 }
