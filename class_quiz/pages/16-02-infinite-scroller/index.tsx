@@ -18,7 +18,7 @@ import {
   IQueryFetchBoardsArgs,
 } from "@/src/commons/types/generated/types";
 import { gql, useQuery } from "@apollo/client";
-import InfiniteScroll from "react-infinite-scroller";
+import InfiniteScroll from "rea`ct-infinite-scroller";
 
 const FETCH_BOARDS = gql`
   query fetchBoards($page: Int) {
