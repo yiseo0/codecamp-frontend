@@ -68,13 +68,14 @@ export function InfiniteScroll({
 
   const onScroll = () => {
     if (
+      scrollRef.current &&
       !isLoading &&
       hasMore &&
       scrollRef.current.getBoundingClientRect().bottom <= window.innerHeight
     ) {
       setLoadOnMount(true);
     }
-  };  
+  };
 
   useEffect(() => {
     if (!isLoading && hasMore && loadOnMount) {
