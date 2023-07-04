@@ -23,7 +23,7 @@ const FETCH_BOARDS = gql`
   }
 `;
 
-export default function index() {
+export default function infiniteScrollerMakePage() {
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
